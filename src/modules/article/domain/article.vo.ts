@@ -13,7 +13,7 @@ export interface IArticleVO {
     content: string
     url: string
     urlToImage: string
-    publishedAt: Date
+    publishedAt: string
 }
 
 export class ArticleVO {
@@ -32,8 +32,8 @@ export class ArticleVO {
     @IsString()
     readonly urlToImage: string
 
-    @IsDate()
-    readonly publishedAt: Date
+    @IsString()
+    readonly publishedAt: string
 
     private constructor(articleData: IArticleVO){
         this.title = articleData.title;

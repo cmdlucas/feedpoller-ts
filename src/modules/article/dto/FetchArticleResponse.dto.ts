@@ -11,7 +11,7 @@ export class FetchArticleResponseDto {
     readonly content: string;
     readonly url: string;
     readonly urlToImage: string;
-    readonly publishedAt: Date;
+    readonly publishedAt: string;
 
     private constructor(article: ArticleEntity) {
         this.source = { id: article.source.source_id, name: article.source.name };

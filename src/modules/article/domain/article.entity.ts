@@ -31,9 +31,10 @@ export class ArticleEntity extends BaseEntity {
     urlToImage: string
 
     @Column({
-        type: "timestamp"
+        type: "varchar",
+        length: 25
     })
-    publishedAt: Date
+    publishedAt: string
 
     @Column({
         type: "longtext"

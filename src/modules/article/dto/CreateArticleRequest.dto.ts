@@ -31,5 +31,5 @@ export class CreateArticleRequestDto {
     urlToImage: string
 
     @IsString()
-    publishedAt: Date
+    publishedAt: string
 }

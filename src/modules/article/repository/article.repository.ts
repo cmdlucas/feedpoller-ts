@@ -9,9 +9,6 @@ import { OperationErrors, ErrorInfo } from "../../../core/logic/Errors";
 @Injectable()
 @EntityRepository(ArticleEntity)
 export class ArticleRepository extends Repository<ArticleEntity> implements IRepository<ArticleEntity> {
-    constructor(private entityManager: EntityManager) {
-        super();
-    }
 
     async findLatestTen(): Promise<ArticleEntity[]> {
         return null;
@@ -20,7 +17,7 @@ export class ArticleRepository extends Repository<ArticleEntity> implements IRep
     async exists(article: ArticleEntity) {
         let entity: ArticleEntity;
         try {
-            entity = await this.entityManager.findOne(ArticleEntity, article.id);
+            entity = await this.findOne(article.id);
             return Success.out(!!entity === true);
         } catch (error) {
             return Failure.out({ 
@@ -32,7 +29,7 @@ export class ArticleRepository extends Repository<ArticleEntity> implements IRep
 
     async saveArticle(article: ArticleEntity): Promise<Result<ArticleEntity | ErrorInfo>> {
         try{
-            const savedEntity = await this.entityManager.save(article);
+            const savedEntity = await this.save(article);
             return Success.out(savedEntity);
         } catch (error) {
             return Failure.out({ 
@@ -43,7 +40,7 @@ export class ArticleRepository extends Repository<ArticleEntity> implements IRep
     }
 
     async deleteMany(articles: ArticleEntity[]) {
-        return this.entityManager.transaction(async transactionManager => {
+        return this.manager.transaction(async transactionManager => {
             articles.forEach(article => {
                 transactionManager.softRemove(article);
             })
