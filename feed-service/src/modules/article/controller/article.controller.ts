@@ -3,7 +3,6 @@ import { CreateArticleRequestDto } from '../dto/createarticlerequest.dto';
 import { CreateArticleService } from '../service/createarticle.service';
 import { failureResponse, dataResponse } from '../../../core/logic/Output';
 import { ErrorInfo } from '../../../core/logic/Errors';
-import ArticleEntity from '../domain/article.entity';
 import { CreateArticleRequestPipe } from '../validator/CreateArticleRequest.pipe';
 
 @Controller('articles')
