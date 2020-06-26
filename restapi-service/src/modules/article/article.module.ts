@@ -3,7 +3,6 @@ import { ArticleRepository } from './repository/article.repository';
 import { EntityManager, getManager } from 'typeorm';
 import { CreateArticleService } from './service/createarticle.service';
 import { ArticleController } from './controller/article.controller';
-import { InfraModule } from '../../infra/infra.module';
 
 /**
  * NB: Instead of using TypeOrmModule.forFeature() we supply our own Repository provider
