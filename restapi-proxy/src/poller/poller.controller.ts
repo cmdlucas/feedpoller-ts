@@ -5,9 +5,15 @@ import { PollerService } from "./poller.service";
 export class PollerController {
     constructor(private pollerService: PollerService) {}
 
-    @Post()
-    async getHome(@Body('q') queryStrings: string[]) {
+    @Post('start')
+    async startPolling(@Body('q') queryStrings: string[]) {
         this.pollerService.startPolling(queryStrings);
+        return "OK";
+    }
+
+    @Post('stop')
+    async stopAllPolling() {
+        this.pollerService.stopAllPolling();
         return "OK";
     }
 }

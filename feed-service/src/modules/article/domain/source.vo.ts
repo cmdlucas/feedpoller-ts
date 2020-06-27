@@ -14,14 +14,13 @@ export interface ISourceVO {
  * An object representation of an Source
  */
 export class SourceVO {
-    @IsString()
     readonly id: string
 
     @IsString()
     readonly name: string
 
     private constructor(sourceData: ISourceVO) {
-        this.id = sourceData.id;
+        this.id = sourceData.id ?? "";
         this.name = sourceData.name;
         Object.freeze(this);
     }

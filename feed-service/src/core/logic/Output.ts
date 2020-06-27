@@ -1,4 +1,4 @@
-type Status = "success" | "failed";
+type Status = "success" | "failure";
 
 export interface ApiControllerResponse {
     readonly status: Status
@@ -13,7 +13,7 @@ export interface FailureResponse extends ApiControllerResponse {
 }
 
 export const failureResponse = (reasons: Array<string>): FailureResponse => ({
-    status: "success",
+    status: "failure",
     reasons: reasons
 })
 

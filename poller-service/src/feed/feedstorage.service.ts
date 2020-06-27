@@ -1,12 +1,18 @@
-import { Injectable, Inject } from "@nestjs/common";
+import { Injectable, Inject, Logger } from "@nestjs/common";
 import { ClientProxy } from "@nestjs/microservices";
 import { Article } from "./feed.proto";
+
+const logger = new Logger('FeedStorageService');
 
 @Injectable()
 export class FeedStorageService {
     constructor(@Inject("FeedServiceClient") private feedServiceClient: ClientProxy) {}
 
-    storeFeed(feed: Article[]) {
-        this.feedServiceClient.send<string, Article[]>("save.articles", feed);
+    async storeFeed(feed: Article[]) {
+        feed.forEach(article => {
+            const storageWork = this.feedServiceClient.emit<string, Article>(
+                {hit: 'articles', action: 'save'}, article);
+            storageWork.subscribe(response => logger.log(response));
+        })
     }
 }

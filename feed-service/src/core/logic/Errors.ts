@@ -1,8 +1,8 @@
 export enum OperationErrors {
-    InvalidDataTypeError,
-    InvalidArgumentError,
-    EntityCreationError,
-    EntityFindError
+    InvalidDataTypeError = "InvalidDataTypeError",
+    InvalidArgumentError = "InvalidArgumentError",
+    EntityCreationError = "EntityCreationError",
+    EntityFindError = "EntityFindError"
 }
 
 export interface ErrorInfo {

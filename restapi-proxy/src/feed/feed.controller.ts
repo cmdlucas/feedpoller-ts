@@ -1,9 +1,12 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
+import { FeedFetchService } from "./feedfetch.service";
 
 @Controller('feed')
 export class FeedController {
+    constructor(private feedFetchService: FeedFetchService){}
+
     @Get()
-    async fetchLatestFeed(@Param('cursor') cursor: string) {
-        return "Feed"
+    async fetchLatestFeed(@Query('cursor') cursor: string) {
+        return await this.feedFetchService.fetch(cursor || "");
     }
 }
