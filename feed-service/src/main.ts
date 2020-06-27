@@ -8,7 +8,7 @@ const logger = new Logger("Main");
 const tcpConfig: MicroserviceOptions = {
     transport: Transport.TCP,
     options: {
-        port: 3000,
+        port: 3735,
         host: "localhost"
     }
 }
