@@ -1,7 +1,7 @@
 
 ## Description
 
-Data hosting area of the Feed Poller microservice architecture
+Feed service area of the Feed Poller microservice architecture
 
 ## Installation
 

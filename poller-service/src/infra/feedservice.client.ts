@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Module, Global } from "@nestjs/common";
 import { ConfigService, ConfigModule } from "@nestjs/config";
 import { Transport, ClientProxy, ClientProxyFactory, ClientOptions } from "@nestjs/microservices";
 
@@ -6,7 +6,7 @@ import { Transport, ClientProxy, ClientProxyFactory, ClientOptions } from "@nest
     imports: [ConfigModule],
     providers: [
         {
-            provide: 'FEED_SERVICE',
+            provide: 'FeedServiceClient',
             inject: [ConfigService],
             useFactory: (configService: ConfigService): ClientProxy => {
                 const clientConnectionConfig: ClientOptions = {
@@ -19,6 +19,7 @@ import { Transport, ClientProxy, ClientProxyFactory, ClientOptions } from "@nest
                 return ClientProxyFactory.create(clientConnectionConfig);
             }
         }
-    ]
+    ],
+    exports: ['FeedServiceClient']
 })
 export class FeedServiceClientModule { }

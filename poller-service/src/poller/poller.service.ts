@@ -10,7 +10,7 @@ const logger = new Logger("PollerService");
 export class PollerService {
     private readonly newsapi: any;
 
-    constructor(private configService: ConfigService, private feedStorageService: FeedStorageService){        
+    constructor(private configService: ConfigService, private feedStorageService: FeedStorageService){
         this.newsapi = new NewsApi(this.configService.get<string>("NEWS_API_KEY")).v2;
     }
 

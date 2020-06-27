@@ -6,8 +6,7 @@ const logger = new Logger("Main");
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    await app.listen(3000, () => {
-        logger.log("REST Api Proxy now running...");
-    });
+    await app.listen(3000, () => logger.log("REST Api Proxy now running..."));
 }
+
 bootstrap();
