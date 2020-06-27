@@ -20,7 +20,7 @@ export class SourceVO {
     readonly name: string
 
     private constructor(sourceData: ISourceVO) {
-        this.id = sourceData.id;
+        this.id = sourceData.id ?? "";
         this.name = sourceData.name;
         Object.freeze(this);
     }

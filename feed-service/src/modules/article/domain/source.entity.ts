@@ -4,7 +4,7 @@ import { ArticleEntity } from "./article.entity";
 import { SourceVO } from "./source.vo";
 import { Success } from "../../../core/logic/Result";
 
-@Entity()
+@Entity('sources')
 export class SourceEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number

@@ -2,7 +2,6 @@ import { Controller, Get, Body, UsePipes, Param, Query, Logger } from '@nestjs/c
 import { CreateArticleRequestDto } from '../dto/createarticlerequest.dto';
 import { CreateArticleService } from '../service/createarticle.service';
 import { failureResponse, dataResponse } from '../../../core/logic/Output';
-import { ErrorInfo } from '../../../core/logic/Errors';
 import { CreateArticleRequestPipe } from '../validator/CreateArticleRequest.pipe';
 import { MessagePattern, Payload, EventPattern } from '@nestjs/microservices';
 import { FetchArticlesService } from '../service/fetcharticles.service';
@@ -28,12 +27,13 @@ export class ArticleController {
 
     @MessagePattern({ hit: 'articles', action: 'fetch' })
     @UsePipes(FetchArticlesRequestPipe)
-    async fetchArticles(@Payload() payload: number) {
-        logger.log("Fetching some saved articles... ");
-        const fetchedArticlesOrError = await this.fetchArticlesService.fetchTenBeforeCursor(payload)
+    async fetchArticles(@Payload() cursor: number) {
+        const fetchedArticlesOrError = await this.fetchArticlesService.fetchTenBeforeCursor(cursor || -1)
 
-        if(fetchedArticlesOrError.isFailure())
+        if(fetchedArticlesOrError.isFailure()){
+            logger.error(fetchedArticlesOrError);
             return failureResponse(["Unable to fetch article"]);
+        }
 
         return dataResponse(fetchedArticlesOrError.value);
     }
