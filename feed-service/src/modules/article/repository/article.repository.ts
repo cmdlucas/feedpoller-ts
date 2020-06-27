@@ -10,8 +10,11 @@ import { OperationErrors, ErrorInfo } from "../../../core/logic/Errors";
 @EntityRepository(ArticleEntity)
 export class ArticleRepository extends Repository<ArticleEntity> implements IRepository<ArticleEntity> {
 
-    async findLatestTen(): Promise<ArticleEntity[]> {
-        return null;
+    async findTenBeforeId(id: number): Promise<Result<ArticleEntity[] | ErrorInfo >> {
+        return Failure.out({
+            type: OperationErrors.EntityFindError,
+            message: `id: ${id}, timestamp: ${Date.now()}`
+        });
     }
 
     async exists(article: ArticleEntity) {

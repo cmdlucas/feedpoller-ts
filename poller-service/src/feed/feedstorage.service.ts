@@ -7,6 +7,6 @@ export class FeedStorageService {
     constructor(@Inject("FeedServiceClient") private feedServiceClient: ClientProxy) {}
 
     storeFeed(feed: Article[]) {
-        this.feedServiceClient.send<string, Article[]>("save.articles", feed);
+        this.feedServiceClient.send<string, Article[]>({hit: 'articles', action: 'save'}, feed);
     }
 }

@@ -27,6 +27,7 @@ export class PollerService {
         this.newsapi.v2.everything({
             q: queryString
         }).then(res => {
+            logger.log(res);
             if(res.status === "ok") {
                 this.feedStorageService.storeFeed(res.articles as Article[])
                 return;

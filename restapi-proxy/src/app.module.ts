@@ -6,10 +6,16 @@ import { FeedFetchService } from './feed/feedfetch.service';
 import { PollerController } from './poller/poller.controller';
 import { FeedServiceClientModule } from './infra/feedservice.client';
 import { PollerServiceClientModule } from './infra/pollerservice.client';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-    imports: [FeedServiceClientModule, PollerServiceClientModule],
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: `.env.${process.env.NODE_ENV}`,
+            isGlobal: true
+        }), FeedServiceClientModule, PollerServiceClientModule
+    ],
     controllers: [AppController, FeedController, PollerController],
-    providers: [PollerService, FeedFetchService],
+    providers: [ConfigService, PollerService, FeedFetchService],
 })
 export class AppModule { }
