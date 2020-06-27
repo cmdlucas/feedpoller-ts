@@ -3,7 +3,7 @@ import { PollerService } from './poller/poller.service';
 import { AppController } from './app.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { FeedController } from './feed/feed.controller';
-import { FeedStorageService } from './feed/feedstorage.service';
+import { FeedFetchService } from './feed/feedfetchservice';
 
 @Module({
     imports: [
@@ -12,6 +12,6 @@ import { FeedStorageService } from './feed/feedstorage.service';
         ]),
     ],
     controllers: [AppController, FeedController],
-    providers: [PollerService, FeedStorageService],
+    providers: [PollerService, FeedFetchService],
 })
 export class AppModule { }
