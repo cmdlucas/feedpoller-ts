@@ -16,7 +16,7 @@ const tcpOption: MicroserviceOptions = {
 async function bootstrap() {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, tcpOption);
     await app.listen(() => {
-        logger.log("Poller App now running...");
+        logger.log("Poller Service App now running...");
     });
 }
 bootstrap();

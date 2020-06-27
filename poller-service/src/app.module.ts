@@ -1,17 +1,12 @@
 import { Module } from '@nestjs/common';
 import { PollerService } from './poller/poller.service';
-import { AppController } from './app.controller';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { FeedController } from './feed/feed.controller';
 import { FeedStorageService } from './feed/feedstorage.service';
+import { FeedServiceClientModule } from './infra/feedservice.client';
+import { PollerController } from './poller/poller.controller';
 
 @Module({
-    imports: [
-        ClientsModule.register([
-            { name: 'FEED_SERVICE', transport: Transport.TCP },
-        ]),
-    ],
-    controllers: [AppController, FeedController],
+    imports: [FeedServiceClientModule],
+    controllers: [PollerController],
     providers: [PollerService, FeedStorageService],
 })
 export class AppModule { }
