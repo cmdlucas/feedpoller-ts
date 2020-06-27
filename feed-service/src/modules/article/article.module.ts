@@ -4,13 +4,14 @@ import { EntityManager, getManager } from 'typeorm';
 import { CreateArticleService } from './service/createarticle.service';
 import { ArticleController } from './controller/article.controller';
 import { FetchArticlesService } from './service/fetcharticles.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import ArticleEntity from './domain/article.entity';
 
-/**
- * NB: Instead of using TypeOrmModule.forFeature() we supply our own Repository provider
- * This is simply because the former gives us a TypeOrm default wrapper of any specified entity
- */
 @Global()
 @Module({
+    imports: [ 
+        TypeOrmModule.forFeature([ArticleEntity]) 
+    ],
     providers: [
         ArticleRepository, CreateArticleService, FetchArticlesService
     ],

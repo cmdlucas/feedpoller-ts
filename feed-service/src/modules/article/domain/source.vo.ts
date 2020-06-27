@@ -14,7 +14,6 @@ export interface ISourceVO {
  * An object representation of an Source
  */
 export class SourceVO {
-    @IsString()
     readonly id: string
 
     @IsString()
