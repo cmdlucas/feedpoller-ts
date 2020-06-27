@@ -1,4 +1,4 @@
-import { Repository, EntityRepository, EntityManager, FindManyOptions, LessThan, SelectQueryBuilder } from "typeorm";
+import { Repository, EntityRepository, LessThan, SelectQueryBuilder } from "typeorm";
 import { ArticleEntity } from "../domain/article.entity";
 import { IRepository } from "../../../core/infra/IRepository";
 import { Injectable, Logger } from "@nestjs/common";
