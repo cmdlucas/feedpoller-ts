@@ -1,5 +1,7 @@
 import { ArticleRepository } from "../repository/article.repository";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class FetchArticlesService {
     constructor(private articlesRepository: ArticleRepository){}
 
