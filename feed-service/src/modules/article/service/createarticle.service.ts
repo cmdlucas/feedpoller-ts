@@ -1,15 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { ArticleRepository } from "../repository/article.repository";
-import { CreateArticleRequestDto } from "../dto/createarticlerequest.dto";
+import { CreateArticleRequestDto } from "../dto/CreateArticleRequest.dto";
 import { IService } from "../../../core/infra/IService";
-import { Result, Success, Failure } from "../../../core/logic/Result";
+import { Result, Success } from "../../../core/logic/Result";
 import { AuthorVO } from "../domain/author.vo";
 import { ArticleVO } from "../domain/article.vo";
 import { SourceVO } from "../domain/source.vo";
 import ArticleEntity from "../domain/article.entity";
-import AuthorEntity from "../domain/author.entity";
-import SourceEntity from "../domain/source.entity";
-import { OperationErrors } from "../../../core/logic/Errors";
 
 
 export interface ICreateArticleService<Input, Output> extends IService<Input, Output> {}

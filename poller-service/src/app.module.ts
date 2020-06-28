@@ -8,7 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
     imports: [
         ConfigModule.forRoot({
-          envFilePath: `.env.${process.env.NODE_ENV}`,
+          envFilePath: `.env`,
           isGlobal: true
       }),  FeedServiceClientModule
     ],

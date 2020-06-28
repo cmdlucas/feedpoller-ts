@@ -2,9 +2,7 @@ import path from 'path';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 // load environment file variables into memory
-require('dotenv').config({ 
-    path: path.join(process.cwd(), `.env.${process.env.NODE_ENV}`) 
-});
+require('dotenv').config();
 
 interface Config {
     tcp: MicroserviceOptions
