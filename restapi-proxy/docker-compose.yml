@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+    feed_service:
+        restart: always
+        env_file: .env
+        build:
+            context: .
+            args:
+                NODE_ENV: ${NODE_ENV} 
+        ports:
+            - ${TCP_PORT}:${TCP_PORT}

@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+    feed_service:
+        depends_on:
+            - mysql
+        restart: always
+        env_file: .env
+        build:
+            context: .
+            args:
+                NODE_ENV: ${NODE_ENV} 
+        ports:
+            - ${TCP_PORT}:${TCP_PORT}      
+    mysql:
+        image: mariadb
+        container_name: mariadb
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - ~/feed_poller/feedservice_db:/data/db
+        ports:
+            - "${DB_PORT}:${DB_PORT}"
+volumes:
+    feedservice_db:
